@@ -11,7 +11,6 @@ void registration()
 {	
 	data *m,*c;
 	FILE *p;
-	int flag=0;
 	p = fopen("admin.bin","ab+");
 	c = (data*)malloc(sizeof(data));
 	m = (data*)malloc(sizeof(data));
@@ -38,8 +37,6 @@ void registration()
 				printf("\t\t\t\t\tALREADY REGISTERED..\n\n");
 				goto a;
 				}
-				else
-				flag=1;
 			}
 			printf("Enter student's name\n");
 			fflush(stdin);
@@ -55,40 +52,54 @@ printf("\n\t\t\t\t\t...DATABASE UPDATED SUCCESSFULLY...\n\n");
 int signin()
 {
 	FILE *p;
-	int flag=0;
 	p = fopen("admin.bin","ab+");
+	int flag=0;
 	data *m,*c;
 	m = (data*)malloc(sizeof(data));
 	c = (data*)malloc(sizeof(data));
 	
-	printf("Enter your login and password\n");
-	scanf("%s%d",m->usn,&m->admn);
+	again:printf("Enter your Login Id : ");
+	scanf("%s",m->usn);
+	printf("Enter your Password : ");
+	scanf("%d",&m->admn);
+	rewind(p);
 	for(;;)
 			{
+				
 				fread(c,sizeof(data),1,p);
 				if(feof(p))
 				break;
-			 	
-				else if((m->admn==c->admn)||(strcmp(m->usn,c->usn)==0))
-				return(m->admn);
 				
+				else if((strcmp(m->usn,c->usn)!=0)||(m->admn!=c->admn))
+				flag=1;
 				else
-				{
-					flag=1;
-				}
+				return(c->admn);
+				
 			}	
 	if(flag==1)
 	{
-		printf("Give correct credentials\n");
-		printf("");
-	}
-
-}
-//void display()
-//{
+	printf("\t\t\t\t\tGive correct credentials....\n");
+	goto again;
 	
-//		printf("%s\t%d\t%d\t%s\n\n",w->name,w->admn,w->cia,w->usn);
-//	}
+	}
+}
+void display()
+{
+	
+	FILE *p;
+	p = fopen("admin.bin","rb");
+	data *w;
+	w = (data*)malloc(sizeof(data));
+	
+	for(;;)
+	{
+		fread(w,sizeof(data),1,p);
+		if(feof(p))
+		break;
+		else
+		printf("%s\t%d\t%s\n\n",w->name,w->admn,w->usn);
+	}
+}
 	
 	
 void test(int w)
@@ -100,7 +111,7 @@ void test(int w)
 	c = (data*)malloc(sizeof(data));
 	int choice,answer,score=0;
 	printf("\t\t\tGet ready for Assignment test.....\n");
-		
+		Sleep(1000);
 		system("cls");
 		printf("Q1.what is 6+6?\n");
 		printf("1.12\n2.16\n3.None of the above\n");
@@ -137,7 +148,8 @@ void test(int w)
 main()
 {
 	int choice,choose,w;
-	a:printf("1.Registration\t\t2.Sign In\t\t3.Exit\n");
+	printf("\t\t\t\tWelcome To Student Portal\n\n");
+	a:printf("1.Registration\t\t2.Sign In\t\t3.Display\t\t4.Exit\n");
 	scanf("%d",&choice);
 	switch(choice)
 	{
@@ -159,7 +171,9 @@ main()
 				}		
 		break;
 		
-		case 3: 
+		case 3:display();
+			break;
+		case 4: 
 		printf("Bye!\n");
 		Sleep(2000);
 		exit(0);
