@@ -83,6 +83,7 @@ int signin()
 	
 	}
 }
+/*
 void display()
 {
 	
@@ -100,54 +101,11 @@ void display()
 		printf("%s\t%d\t%s\n\n",w->name,w->admn,w->usn);
 	}
 }
-	
-	
-void test(int w)
-{
-	FILE *p;
-	char usn[20];
-	data *c;
-	p  = fopen("admin.bin","rb+");
-	c = (data*)malloc(sizeof(data));
-	int choice,answer,score=0;
-	printf("\t\t\tGet ready for Assignment test.....\n");
-		Sleep(1000);
-		system("cls");
-		printf("Q1.what is 6+6?\n");
-		printf("1.12\n2.16\n3.None of the above\n");
-		scanf("%d",&answer);
-		
-		if(answer==1)
-		score = 1;
-		
-		system("cls");
-		printf("Q1.what is 7+7?\n");
-		printf("1.12\n2.14\n3.None of the above\n");
-		scanf("%d",&answer);	
-		if(answer==2)
-		score = 2;
-		system("cls");
-		printf("Your score out of 2 is %d",score);
-		printf("\t\t\t\tThankyou for taking the test\n\n");
-	
-	for(;;)
-	{
-		fread(c,sizeof(data),1,p);
-		if(feof(p))
-		break;
-		else if(w==c->admn)
-		{
-			c->cia = score;
-			fseek(p,-(sizeof(data)),SEEK_CUR);
-			fwrite(c,sizeof(data),1,p);
-			fseek(p,(sizeof(data)),SEEK_CUR);
-		}
-	}	
-	return;
-}
+*/	
+
 main()
 {
-	int choice,choose,w;
+	int choice, choose, w;
 	printf("\t\t\t\tWelcome To Student Portal\n\n");
 	a:printf("1.Registration\t\t2.Sign In\t\t3.Display\t\t4.Exit\n");
 	scanf("%d",&choice);
