@@ -35,6 +35,8 @@ void easySet()
 		fwrite(d[i],sizeof(quest),1,p);
 		fseek(p,0,SEEK_END);
 	}
+	
+	
 	printf("Saving Question Paper...");
 	Sleep(1000);
 	system("cls");
@@ -47,7 +49,7 @@ void hardSet()
 	quest *d[10];
 	for(i=0;i<10;i++)
 		d[i]=(quest *)malloc(sizeof(quest));
-	p = fopen("question2.bin","ab+");
+	q = fopen("question2.bin","ab+");
 	char c;
 	for(i=0;i<10;i++)
 	{
@@ -63,9 +65,10 @@ void hardSet()
 		printf("4. ");
 		gets(d[i]->d);
 		scanf("%[^\n]s",d[i]->answer);
-		fwrite(d[i],sizeof(quest),1,q);
+		fwrite(d,sizeof(quest),1,q);
 		fseek(q,0,SEEK_END);
 	}
+	
 	printf("Saving Question Paper...");
 	Sleep(1000);
 	system("cls");

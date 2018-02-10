@@ -16,15 +16,17 @@ void registration()
 	m = (data*)malloc(sizeof(data));
 	printf("\n");
 		
-			a:printf("Enter the student's Admission Number and USN -\n");
+			a:printf("Enter the Student's Admission Number:- ");
 			scanf("%d",&m->admn);
 			if(m->admn==0)
 			{
-				printf("\t\t\t\t.....ABORTED!!!!\n\n");
+				printf("\t\t\t\tReturning to Main Menu...");
+				Sleep(1000);
+				system("cls");
 				return;
-				
 			}
 			fflush(stdin);
+			printf("Enter the Student's USN:- ");
 			scanf("%s",m->usn);
 			rewind(p);
 			for(;;)
@@ -83,31 +85,13 @@ int signin()
 	
 	}
 }
-/*
-void display()
-{
-	
-	FILE *p;
-	p = fopen("admin.bin","rb");
-	data *w;
-	w = (data*)malloc(sizeof(data));
-	
-	for(;;)
-	{
-		fread(w,sizeof(data),1,p);
-		if(feof(p))
-		break;
-		else
-		printf("%s\t%d\t%s\n\n",w->name,w->admn,w->usn);
-	}
-}
-*/	
+
 
 main()
 {
 	int choice, choose, w;
 	printf("\t\t\t\tWelcome To Student Portal\n\n");
-	a:printf("1.Registration\t\t2.Sign In\t\t3.Display\t\t4.Exit\n");
+	a:printf("1.Registration\t\t2.Sign In\t\t3.Exit\n");
 	scanf("%d",&choice);
 	switch(choice)
 	{
@@ -116,22 +100,20 @@ main()
 		break;
 		
 		case 2: w = signin();
-		system("cls");
-				printf("1.Tests\t\t2.Scores\t\t3.Bills\t\t4.Attendence\n");
+			system("cls");
+				printf("1.Tests\t\t2.Scores\n");
 				scanf("%d",&choose);
 				switch(choose)
 				{
-					case 1:	test(w);
-					break;
-				//	case 2: display(w);
-				//	break;
-					
+				//	case 1:	
+				//		test(w);													//Used to link this main interface with Student portal.
+				//		break;
+				//	case 2: 
+				//		score_card(w);												//Score Portal not coded
+				//		break;	
 				}		
 		break;
-		
-		case 3:display();
-			break;
-		case 4: 
+		case 3: 
 		printf("Bye!\n");
 		Sleep(2000);
 		exit(0);

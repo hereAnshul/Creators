@@ -6,7 +6,7 @@
 
 
 int easy[10],hard[10];
-int count;
+
 
 
  typedef struct Quest{
@@ -18,7 +18,7 @@ int count;
 
 main()
 {
-	
+	int marks;
 	char ans[20];
 	int i;
 	for (i=0;i<10;i++)
@@ -30,7 +30,7 @@ main()
 	
 	int randomnumber;
     
-    
+	int count;    
 	quest *m,*n;
 	m =(quest*)malloc(sizeof(quest));
 	n =(quest*)malloc(sizeof(quest));
@@ -39,14 +39,23 @@ main()
 	q = fopen("question1.bin","rb+");
 	w = fopen("question2.bin","rb+");
 	int flag = 0;
-	fread(m,sizeof(quest),1,q);
-	fread(n,sizeof(quest),1,w);
+	/*fseek(q,0,SEEK_SET);
+	for (;;)
+	{
+		
+		fread(m,sizeof(quest),1,q);
+		printf("%s\n",m->t);
+		printf("%s\n",m->a);printf("%s\n",m->b);printf("%s\n",m->c);printf("%s\n",m->d);
+		
+	}*/
+	//fread(m,sizeof(quest),1,q);
+	//fread(n,sizeof(quest),1,w);
 	
-	int k,count;
+	int k;
 	SYSTEMTIME start,end,time;
 	
 	
-		while(count<11)
+		while(count<10)
 		{
 			
 		
@@ -59,19 +68,28 @@ main()
     	{
     		again:fread(m,sizeof(quest),1,q);
     		//srand(time(NULL));
+    		//printf("%s",m->t);
 			randomnumber = rand() % 10;
+			randomnumber = randomnumber + 1;
     		//printf("%d\n", randomnumber);
     		
     		if(easy[randomnumber]==0)
     		{
     			
     			printf("%s\n",m->t);
-				printf("%s\n",m->a);printf("%s\n",m->b);printf("%s\n",m->c);printf("%s\n",m->d);//printf("%s\n", m->answer);
+				printf("%s\n",m->a);printf("%s\n",m->b);printf("%s\n",m->c);printf("%s\n",m->d);
 				GetSystemTime(&start);
 				gets(ans);
+				if(strcmp(m->answer,ans)==0)
+				{
+					marks= marks +1 ;
+					
+				}
 				GetSystemTime(&end);
 				time.wSecond = end.wSecond - start.wSecond;
 				easy[randomnumber]=1;
+				fseek(q,0,SEEK_CUR);
+				
 				
 			}
 			else
@@ -96,6 +114,8 @@ main()
     		agains:fread(n,sizeof(quest),1,w);
     		//srand(time(NULL));
 			randomnumber = rand() % 10;
+			randomnumber = randomnumber + 1;
+			//printf("%d",randomnumber);
     		//printf("%d\n", randomnumber);
     		
     		if(hard[randomnumber]==0)
@@ -105,9 +125,16 @@ main()
 				printf("%s\n",n->a);printf("%s\n",n->b);printf("%s\n",n->c);printf("%s\n",n->d);//printf("%s\n", m->answer);
 				GetSystemTime(&start);
 				gets(ans);
+				if(strcmp(n->answer,ans)==0)
+				{
+					marks= marks +1 ;
+					
+				}
 				GetSystemTime(&end);
 				time.wSecond = end.wSecond - start.wSecond;
 				hard[randomnumber]=1;
+				fseek(w,0,SEEK_CUR);
+				
 				
 			}
 			else
@@ -126,29 +153,13 @@ main()
 		
     			
 			}
+			
     		
     		count++;
     		j++;
 		}
-    	
-    
-		/*fread(m,sizeof(quest),1,q);
-		if(feof(q))
-		break;
-		else if
-		{
-			if((j==randomnumber+1)&&()
-		}
-		//printf("%s\n",m->t);
-		//printf("%s\n",m->a);printf("%s\n",m->b);printf("%s\n",m->c);printf("%s\n",m->d);printf("%s\n", m->answer);
-		//gets(ans);
-		j++;
-		}
-		
-	/*	if(strcmp(ans, m->answer)==0)
-			printf("Maa Chod Di!\n");
-		else
-			printf("Aee Chutiya\n");*/		
+			
+			printf("Final Marks %d",marks);	
 
 }
 
