@@ -158,28 +158,9 @@ main()
     		if(count==10)
     		break;
     		j++;
-		}
-    	
-    
-		/*fread(m,sizeof(quest),1,q);
-		if(feof(q))
-		break;
-		else if
-		{
-			if((j==randomnumber+1)&&()
-		}
-		//printf("%s\n",m->t);
-		//printf("%s\n",m->a);printf("%s\n",m->b);printf("%s\n",m->c);printf("%s\n",m->d);printf("%s\n", m->answer);
-		//gets(ans);
-		j++;
-		}
-		
-	/*	if(strcmp(ans, m->answer)==0)
-			printf("Maa Chod Di!\n");
-		else
-			printf("Aee Chutiya\n");*/	
+		}	
 			
-			printf(" scord %d",marks);	
+		printf("Final Score: %d",marks);	
 
 }
 
