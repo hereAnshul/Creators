@@ -27,7 +27,6 @@ main()
 		hard[i]=0;
 	}
 	
-	
 	int randomnumber;
     
 	int count;    
@@ -55,7 +54,7 @@ main()
 	SYSTEMTIME start,end,time;
 	
 	
-		while(count<10)
+		while(count!=11)
 		{
 			
 		
@@ -70,7 +69,7 @@ main()
     		//srand(time(NULL));
     		//printf("%s",m->t);
 			randomnumber = rand() % 10;
-			randomnumber = randomnumber + 1;
+			randomnumber = randomnumber ;
     		//printf("%d\n", randomnumber);
     		
     		if(easy[randomnumber]==0)
@@ -87,8 +86,8 @@ main()
 				}
 				GetSystemTime(&end);
 				time.wSecond = end.wSecond - start.wSecond;
-				easy[randomnumber]=1;
-				fseek(q,0,SEEK_CUR);
+				//easy[randomnumber]=1;
+				//fseek(q,0,SEEK_CUR);
 				
 				
 			}
@@ -114,7 +113,7 @@ main()
     		agains:fread(n,sizeof(quest),1,w);
     		//srand(time(NULL));
 			randomnumber = rand() % 10;
-			randomnumber = randomnumber + 1;
+			randomnumber = randomnumber ;
 			//printf("%d",randomnumber);
     		//printf("%d\n", randomnumber);
     		
@@ -156,10 +155,31 @@ main()
 			
     		
     		count++;
+    		if(count==10)
+    		break;
     		j++;
 		}
+    	
+    
+		/*fread(m,sizeof(quest),1,q);
+		if(feof(q))
+		break;
+		else if
+		{
+			if((j==randomnumber+1)&&()
+		}
+		//printf("%s\n",m->t);
+		//printf("%s\n",m->a);printf("%s\n",m->b);printf("%s\n",m->c);printf("%s\n",m->d);printf("%s\n", m->answer);
+		//gets(ans);
+		j++;
+		}
+		
+	/*	if(strcmp(ans, m->answer)==0)
+			printf("Maa Chod Di!\n");
+		else
+			printf("Aee Chutiya\n");*/	
 			
-			printf("Final Marks %d",marks);	
+			printf(" scord %d",marks);	
 
 }
 
